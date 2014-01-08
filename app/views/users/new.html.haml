@@ -1,0 +1,21 @@
+%h1 Users#new
+%p Find me in app/views/users/new.html.haml
+
+.large-4.columns
+  = form_for @user, remote: true do |f|
+    = f.label :name
+    = f.text_field :name
+    = f.label :phone_number
+    = f.text_field :phone_number
+    = f.label :email
+    = f.text_field :email
+    = f.label :password
+    = f.password_field :password
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+    = f.fields_for :contact do |c|
+      = c.label :contact_name
+      = c.text_field :name
+      = c.label :contact_phone_number
+      = c.text_field :phone_number
+    = f.submit

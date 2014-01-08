@@ -17,10 +17,12 @@ ActiveRecord::Schema.define(version: 20140104034144) do
   enable_extension "plpgsql"
 
   create_table "contacts", force: true do |t|
-    t.string   "name",         null: false
-    t.string   "phone_number", null: false
-    t.integer  "user_id",      null: false
-    t.datetime "texted_at"
+    t.string   "name",             null: false
+    t.string   "phone_number",     null: false
+    t.string   "email"
+    t.integer  "user_id",          null: false
+    t.datetime "text_sent_at"
+    t.datetime "text_received_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

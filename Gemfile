@@ -1,13 +1,25 @@
 source 'https://rubygems.org'
 
+# ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.9'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0.beta1'
 
-gem 'pg'
+platform :ruby do
+  gem 'pg'
+  gem 'therubyracer'
+  gem 'pry-debugger'
+end
+
+platform :jruby do
+  gem 'activerecord-jdbcpostgresql-adapter'
+  gem 'therubyrhino'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
+
+gem 'foundation-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -30,22 +42,25 @@ gem 'sdoc',          group: :doc, require: false
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
 gem 'spring',        group: :development
 
+gem 'guard',         group: :development
+gem 'guard-haml',    group: :development
+
 gem 'rspec-rails',   group: [:development, :test]
 
 gem 'devise'
 
 gem 'haml'
+gem 'haml-rails'
 
 gem 'twilio-ruby'
 
 gem 'pry',           group: [:development, :test]
-gem 'pry-debugger',  group: [:development, :test]
 
 gem 'awesome_print', group: [:development, :test]
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
-
+gem 'sidekiq'
 # Use unicorn as the app server
 gem 'puma'
 
