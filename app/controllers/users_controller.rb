@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include FormattedErrors
+
   def new
     @user = User.new
     @user.build_contact
@@ -10,13 +12,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
-      respond_to do |format|
-        format.html { redirect_to @user, :notice => 'User was successfully created.' }
-        format.js   { render :js => "window.location.replace('#{user_path(@user)}');"}
-      end
-      # render status: 201, json: {link: user_url(@user)}
+      redirect_to_path user_path(@user)
     else
-      render status: 400, json: formatted_error_messages
+      render status: 400, json: format_error_messages(@user)
     end
   end
 
@@ -30,11 +28,6 @@ class UsersController < ApplicationController
   end
 
   private
-  def formatted_error_messages
-    errors = @user.errors.messages
-    errors.keys.each {|k| errors["user_#{k}".gsub('.', '_attributes_')] = errors.delete(k).join(', ')}
-    errors
-  end
 
   def user_params
     params.require(:user).permit(:name, :email, :phone_number, :password, :password_confirmation, :contact_attributes => [:name, :phone_number])
