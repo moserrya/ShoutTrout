@@ -1,0 +1,13 @@
+default: &default
+  from:  '+17039978361'
+  sid:   'PN0d0f338872a192d22ff51408c20adfc3'
+  token: 'cd068e7b960b2e109bbb0065bfa4205a'
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

@@ -9,6 +9,7 @@
     var validationMessages = xhr.responseJSON;
     for (var key in validationMessages) {
       if (validationMessages.hasOwnProperty(key)){
+        $("label[for='" + key + "']").addClass('error');
         var $input = $('#' + key);
         $input.addClass('error')
         $input.after(errorTemplate.replace('{validation-messages}', validationMessages[key]));
@@ -20,7 +21,7 @@
     $("form").on("ajax:success", function(e, data, status, xhr) {
       
     }).bind("ajax:error", function(e, xhr, status, error) {
-      debugger;
+      $('label.error').removeClass('error');
       $('input.error').removeClass('error');
       $('small.error').remove();
       appendErrors(xhr);

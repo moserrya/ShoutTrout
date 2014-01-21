@@ -52,7 +52,7 @@ gem 'devise'
 gem 'haml'
 gem 'haml-rails'
 
-gem 'twilio-ruby'
+gem 'plivo'
 
 gem 'pry',           group: [:development, :test]
 

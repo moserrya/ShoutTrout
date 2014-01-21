@@ -9,8 +9,10 @@ class User < ActiveRecord::Base
   has_one :contact, inverse_of: :user
   accepts_nested_attributes_for :contact
 
+  has_many :text_messages
+
   before_validation :normalize_phone_number
 
-  validates_presence_of :name, :contact
+  validates_presence_of :name
   validates :phone_number, length: {is: 10}
 end
