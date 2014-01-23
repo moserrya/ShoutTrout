@@ -200,6 +200,10 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    stripe (1.9.9)
+      mime-types (~> 1.25)
+      multi_json (>= 1.0.4, < 2)
+      rest-client (~> 1.4)
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
       ref
@@ -253,6 +257,7 @@ DEPENDENCIES
   sdoc
   sidekiq
   spring
+  stripe
   therubyracer
   therubyrhino
   uglifier (>= 1.3.0)

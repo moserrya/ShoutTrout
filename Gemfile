@@ -54,6 +54,8 @@ gem 'haml-rails'
 
 gem 'plivo'
 
+gem 'stripe'
+
 gem 'pry',           group: [:development, :test]
 
 gem 'awesome_print', group: [:development, :test]
