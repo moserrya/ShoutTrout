@@ -1,5 +1,6 @@
-class SMS < ActiveRecord::Base
+class InboundMessage < ActiveRecord::Base
   include Phone
+  validates_presence_of :from, :to
 
   before_create :set_user
   belongs_to :user

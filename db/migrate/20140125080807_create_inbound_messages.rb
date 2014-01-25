@@ -1,6 +1,6 @@
-class CreateSMS < ActiveRecord::Migration
+class CreateInboundMessages < ActiveRecord::Migration
   def change
-    create_table :s_m_s do |t|
+    create_table :inbound_messages do |t|
       t.string :from
       t.string :to
       t.string :text
