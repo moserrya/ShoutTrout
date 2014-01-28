@@ -1,11 +1,10 @@
 class InboundMessagesController < ApplicationController
+  skip_before_filter  :verify_authenticity_token, only: [:create]
 
   def create
-    InboundMessage.create inbound_message_params
-    render xml: "<Response/>", status: 201
+    message = InboundMessage.new inbound_message_params
+    render xml: "<Response/>", status: message.save ? 201 : 400
   end
-
-  # pivlo sms url: shouttrout.com/inbound_messages
 
   private
 

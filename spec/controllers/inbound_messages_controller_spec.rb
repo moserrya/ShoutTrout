@@ -9,6 +9,5 @@ describe InboundMessagesController do
         post :create, params
       }.to change{InboundMessage.count}.by(1)
     end
-
   end
 end

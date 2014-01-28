@@ -13,6 +13,8 @@
     = f.password_field :password
     = f.label :password_confirmation
     = f.password_field :password_confirmation
+    = f.label :hour_to_send_message, "When would you like your daily message? (PST)"
+    = f.select :hour_to_send_message, options_for_select( (1..11).map {|hr| ["#{hr} AM", hr]} + [['Noon', 12]] + (1..11).map {|hr| ["#{hr} PM", hr + 12]} + [['Midnight', 0]], 12)
     = f.fields_for :contact do |c|
       = c.label :contact_name
       = c.text_field :name

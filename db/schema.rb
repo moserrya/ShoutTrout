@@ -56,9 +56,9 @@ ActiveRecord::Schema.define(version: 20140125080807) do
   create_table "users", force: true do |t|
     t.string   "name",                                null: false
     t.string   "phone_number",                        null: false
-    t.datetime "text_sent_at"
-    t.datetime "text_received_at"
-    t.string   "time_zone"
+    t.datetime "outbound_text_at"
+    t.datetime "inbound_text_at"
+    t.integer  "hour_to_send_message"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false

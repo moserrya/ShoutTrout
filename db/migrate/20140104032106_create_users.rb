@@ -4,10 +4,10 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name,         null: false
       t.string :phone_number, null: false
 
-      t.datetime :text_sent_at
-      t.datetime :text_received_at
+      t.datetime :outbound_text_at
+      t.datetime :inbound_text_at
 
-      t.string :time_zone
+      t.integer  :hour_to_send_message
 
       t.timestamps
     end
