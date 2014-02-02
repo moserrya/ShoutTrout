@@ -13,6 +13,5 @@ class User < ActiveRecord::Base
 
   before_validation :normalize_phone_number
 
-  validates_presence_of :name
-  validates :phone_number, length: {is: 10}
+  validates :phone_number, length: {is: 10, message: "should be 10 digits"}
 end

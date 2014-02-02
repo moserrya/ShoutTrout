@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20140125080807) do
   enable_extension "plpgsql"
 
   create_table "contacts", force: true do |t|
-    t.string   "name",             null: false
+    t.string   "name"
     t.string   "phone_number",     null: false
     t.string   "email"
     t.integer  "user_id",          null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20140125080807) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",                                null: false
+    t.string   "name"
     t.string   "phone_number",                        null: false
     t.datetime "outbound_text_at"
     t.datetime "inbound_text_at"

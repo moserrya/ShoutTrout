@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
-
-  get "home/index"
-
-  # devise_for :users
-
-  resources :users
+   
+  devise_for :users, path: ''
 
   resources :inbound_messages, only: :create
 
