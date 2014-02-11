@@ -1,6 +1,10 @@
 module PlivoClient
   include Plivo
 
+  def send_messages(dsts)
+    
+  end
+
   def send_message(dst)
     plivo.send_message message_params(dst)
   end
