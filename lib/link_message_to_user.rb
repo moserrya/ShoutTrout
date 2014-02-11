@@ -2,6 +2,8 @@ class LinkMessageToUser < Struct.new(:message)
   delegate :from, to: :message
 
   def call
-    message.user_id = User.find_by(phone_number: message.from).try(:id)
+    if user = User.find_by(phone_number: message.from)
+      message.user_id = user.id
+    end
   end
 end
