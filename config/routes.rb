@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
-   
+
   devise_for :users, path: ''
 
   resources :inbound_messages, only: :create
+
+  resources :subscriptions, except: [:index, :destroy]
+
+  # resources :home do
+  #   collection do
+  #     get :about
+  #   end
+  # end
+
+  match '/about', :to => 'home#about', :via => [:get]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

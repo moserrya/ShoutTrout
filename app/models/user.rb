@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  include Phone
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -9,9 +8,11 @@ class User < ActiveRecord::Base
   has_one :contact, inverse_of: :user
   accepts_nested_attributes_for :contact
 
-  has_many :text_messages
+  has_many :inbound_messages
 
-  before_validation :normalize_phone_number
+  has_one :subscription
 
-  validates :phone_number, length: {is: 10, message: "should be 10 digits"}
+  before_validation NormalizePhoneNumber.new :phone_number
+
+  validates :phone_number, length: {is: 12, message: "does not appear to be valid"}
 end
