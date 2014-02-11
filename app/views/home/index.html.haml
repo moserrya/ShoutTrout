@@ -1,18 +1,45 @@
-- content_for :head do
-  = tag :meta, name: 'stripe-key', content: STRIPE_PUBLIC_KEY
+= render partial: 'header'
 
-%nav.top-bar{data: {topbar: ''}}
-  %ul.title-area
-    %li.name
-      %h1
-        %a{href: '/'} ShoutTrout
-  %section.top-bar-section
-    %ul.right
-      %li
-        %a{href: '/about'} About
-      %li
-        %a{href: '/login'} Log In
+.row.large-12.full-width
+  = link_to image_tag("http://placehold.it/2560x600/37646F/fff&text=ShoutTrout!")
 
+.row.full-width.hero{style: "background-color: #37646F; color: #FFF"}
+  .large-4.columns
+    %h3
+      %i.fi-comment
+      Your Daily Message
+    %p Once a day, one of our trouts will send a text message to your phone
+  .large-4.columns
+    %h3
+      %i.fi-mobile
+      Check In With Us
+    %p Some time in the next 24 hours, just send a reply to let us know you got it
+  .large-4.columns
+    %h3
+      %i.fi-megaphone
+      We've Got Your Back
+    %p If we don't hear from you, we will let your contact know that something's fishy!
 
-- content_for :javascripts do
-  = javascript_include_tag "stripe.v2.min.js"
+.row.large-6
+  .large-4.columns
+    %h3
+      %i.fi-arrow-up
+      Sign up
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = devise_error_messages!
+      = f.telephone_field :phone_number, placeholder: 'Phone Number'
+      = f.text_field :email, placeholder: 'Email address'
+      = f.password_field :password, placeholder: 'Password'
+      = f.submit "Let's do this!", class: "button radius"
+  .large-4.columns
+    %h3
+      %i.fi-key
+      Sign in
+    = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+      = f.text_field :email, placeholder: 'Email address'
+      = f.password_field :password, placeholder: 'Password'
+      - if devise_mapping.rememberable?
+        = f.check_box :remember_me
+        = f.label :remember_me, style: "height: 2.3125rem; margin-bottom: 1rem; padding: 0.5rem;"
+      %br
+      = f.submit "Sign in", class: "button radius"
