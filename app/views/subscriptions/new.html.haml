@@ -1,0 +1,7 @@
+- content_for :head do
+  = tag :meta, name: 'stripe-key', content: STRIPE_PUBLIC_KEY
+
+= render partial: 'home/header'
+
+- content_for :javascripts do
+  = javascript_include_tag "stripe.v2.min.js"
