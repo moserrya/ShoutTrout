@@ -3,7 +3,6 @@ class InboundMessagesController < ApplicationController
   include Plivo
 
   def create
-    binding.pry
     message = InboundMessage.create inbound_message_params
     LinkMessageToUser.new(message).call
     render xml: "<Response/>", status: message.persisted? ? 201 : 400
