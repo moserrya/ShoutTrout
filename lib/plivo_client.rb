@@ -1,20 +1,20 @@
 module PlivoClient
   include Plivo
 
-  def send_messages(dsts)
-    
+  def send_message(dst, body)
+    send_messages [dst], body
   end
 
-  def send_message(dst)
-    plivo.send_message message_params(dst)
+  def send_messages(dsts, body)
+    dst_list = dsts.join('<')
+    plivo.send_message message_params(dst_list, body)
   end
 
   private
-
-  def message_params(dst)
+  def message_params(dst_list, body)
     { 'src'  => PLIVO_CONFIG[:from],
-      'dst'  => dst,
-      'text' => "Hi, this is #{['Tiny', 'Big', 'Rainbow'].sample} Trout. Happy #{Date::DAYNAMES[DateTime.now.cwday]}! #{['Please let me know', 'Hope'].sample} you got this. #{['Can\'t wait to hear', 'Looking forward to hearing'].sample} from you #{[':)'].sample}",
+      'dst'  => dst_list,
+      'text' => body,
       'type' => 'sms'}
   end
 
