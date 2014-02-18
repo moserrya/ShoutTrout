@@ -6,4 +6,8 @@ class Contact < ActiveRecord::Base
 
   before_validation NormalizePhoneNumber.new :phone_number
 
+  def notified?
+    !notified_at.nil?
+  end
+
 end
