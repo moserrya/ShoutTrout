@@ -3,5 +3,5 @@ class InboundMessage < ActiveRecord::Base
 
   belongs_to :user
 
-  before_create NormalizePhoneNumber.new :from
+  after_initialize NormalizePhoneNumber.new :from
 end

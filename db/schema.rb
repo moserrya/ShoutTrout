@@ -37,16 +37,9 @@ ActiveRecord::Schema.define(version: 20140125080807) do
     t.datetime "updated_at"
   end
 
-  create_table "plans", force: true do |t|
-    t.string   "name"
-    t.integer  "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "subscriptions", force: true do |t|
     t.integer  "user_id"
-    t.integer  "plan_id"
+    t.integer  "price",                 default: 600
     t.string   "stripe_customer_token"
     t.boolean  "active",                default: true
     t.datetime "created_at"
@@ -55,18 +48,18 @@ ActiveRecord::Schema.define(version: 20140125080807) do
 
   create_table "users", force: true do |t|
     t.string   "name"
-    t.string   "phone_number",                        null: false
-    t.datetime "outbound_text_at"
-    t.datetime "inbound_text_at"
+    t.string   "phone_number",                          null: false
+    t.datetime "last_outbound_message_at"
+    t.datetime "last_inbound_message_at"
     t.integer  "hour_to_send_message"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                    default: "", null: false
+    t.string   "encrypted_password",       default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",            default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"

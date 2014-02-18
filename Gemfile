@@ -60,13 +60,15 @@ gem 'pry',           group: [:development, :test]
 
 gem 'awesome_print', group: [:development, :test]
 
+gem 'faker', group: [:development, :test]
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'sidekiq'
 # Use unicorn as the app server
 gem 'puma'
 
-gem 'whenever'
+gem 'sidetiq'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

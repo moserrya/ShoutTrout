@@ -5,7 +5,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-    CreateStripeCustomer.perform_async('user_id', 'token')
+    CreateStripeCustomer.perform_async(current_user.id, 'token')
   end
 
   def edit
@@ -19,8 +19,12 @@ class SubscriptionsController < ApplicationController
   end
 
   def cancel
-    subscription = user.subscription
     subscription.deactivate!
     CancelSubscription(subscription.stripe_customer_token)
+  end
+
+  private
+  def subscription
+    @subscription ||= current_user.subscription
   end
 end
