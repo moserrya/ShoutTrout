@@ -3,11 +3,11 @@ class NormalizePhoneNumber
     @attribute = attribute
   end
 
-  def before_create(record)
+  def after_initialize(record)
     record.send("#{@attribute}=", normalize(record.send("#{@attribute}")))
   end
 
-  alias_method :before_validation, :before_create
+  alias_method :before_validation, :after_initialize
 
   private
   def normalize(phone_number)
