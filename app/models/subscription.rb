@@ -4,6 +4,6 @@ class Subscription < ActiveRecord::Base
   scope :active, -> {where(active: true)}
 
   def deactivate!
-    update_attributes active: false
+    update active: false
   end
 end

@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime :last_outbound_message_at
       t.datetime :last_inbound_message_at
 
-      t.integer  :hour_to_send_message
+      t.integer  :hour_to_send_message, default: 12
 
       t.timestamps
     end

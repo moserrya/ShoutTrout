@@ -18,14 +18,15 @@ ActiveRecord::Schema.define(version: 20140125080807) do
 
   create_table "contacts", force: true do |t|
     t.string   "name"
-    t.string   "phone_number",     null: false
+    t.string   "phone_number", null: false
     t.string   "email"
-    t.integer  "user_id",          null: false
-    t.datetime "text_sent_at"
-    t.datetime "text_received_at"
+    t.integer  "user_id",      null: false
+    t.datetime "notified_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "contacts", ["user_id"], name: "index_contacts_on_user_id", using: :btree
 
   create_table "inbound_messages", force: true do |t|
     t.string   "from"
@@ -36,6 +37,8 @@ ActiveRecord::Schema.define(version: 20140125080807) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "inbound_messages", ["user_id"], name: "index_inbound_messages_on_user_id", using: :btree
 
   create_table "subscriptions", force: true do |t|
     t.integer  "user_id"
@@ -51,7 +54,7 @@ ActiveRecord::Schema.define(version: 20140125080807) do
     t.string   "phone_number",                          null: false
     t.datetime "last_outbound_message_at"
     t.datetime "last_inbound_message_at"
-    t.integer  "hour_to_send_message"
+    t.integer  "hour_to_send_message",     default: 12
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                    default: "", null: false

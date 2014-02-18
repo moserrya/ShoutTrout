@@ -8,5 +8,7 @@ class CreateInboundMessages < ActiveRecord::Migration
       t.integer :user_id
       t.timestamps
     end
+
+    add_index :inbound_messages, :user_id
   end
 end

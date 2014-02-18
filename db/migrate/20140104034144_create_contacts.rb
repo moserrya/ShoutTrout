@@ -6,10 +6,11 @@ class CreateContacts < ActiveRecord::Migration
       t.string :email
       t.integer :user_id,     null: false
 
-      t.datetime :text_sent_at
-      t.datetime :text_received_at
+      t.datetime :notified_at
 
       t.timestamps
     end
+
+    add_index :contacts, :user_id
   end
 end
