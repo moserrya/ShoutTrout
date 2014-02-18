@@ -14,3 +14,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+/config/plivo.yml
+/config/stripe.yml
+/config/secrets.yml

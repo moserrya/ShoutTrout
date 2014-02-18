@@ -17,3 +17,4 @@ class MissingUsersWorker
       having('extract(epoch from users.last_outbound_message_at - max(inbound_messages.created_at)) > (?)', User::HOURS_TO_RESPOND.hours)
   end
 end
+
