@@ -3,13 +3,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :subscription
+  has_one :subscription, dependent: :nullify
   has_many :inbound_messages
+
+  has_one :last_inbound_message, -> {order('inbound_messages.id desc')}, class_name: 'InboundMessage'
 
   before_validation NormalizePhoneNumber.new :phone_number
   validates :phone_number, length: {is: 12, message: "does not appear to be valid"}
 
-  has_one :contact, inverse_of: :user
+  has_one :contact, inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :contact
 
   delegate :phone_number, to: :contact, prefix: true, allow_nil: true
