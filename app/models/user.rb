@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_one :contact, inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :contact
 
-  delegate :phone_number, to: :contact, prefix: true, allow_nil: true
+  delegate :phone_number, :notified?, to: :contact, prefix: true, allow_nil: true
 
   scope :active, -> {joins(:subscription).merge(Subscription.active)}
 
