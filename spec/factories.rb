@@ -1,16 +1,16 @@
 FactoryGirl.define do
   
   factory :inbound_message do
-    from "+1#{Faker::Number.number(10)}"
-    to   "+1#{Faker::Number.number(10)}"
-    text Faker::Lorem.words(10 - Kernel.rand(10)).join(' ')
+    from { "+1#{Faker::Number.number(10)}" }
+    to   { "+1#{Faker::Number.number(10)}" }
+    text { Faker::Lorem.words(10 - Kernel.rand(10)).join(' ') }
   end
 
   factory :user do
-    name Faker::Name.name
-    phone_number Faker::Number.number(10)
-    email Faker::Internet.email
-    password Faker::Internet.password
+    name { Faker::Name.name }
+    phone_number { Faker::Number.number(10) }
+    email { Faker::Internet.email }
+    password { Faker::Internet.password }
 
     factory :user_with_messages do
       ignore do
@@ -25,7 +25,7 @@ FactoryGirl.define do
 
   factory :contact do
     user
-    name Faker::Name.name
-    phone_number Faker::Number.number(10)
+    name { Faker::Name.name }
+    phone_number { Faker::Number.number(10) }
   end
 end
