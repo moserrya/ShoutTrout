@@ -4,9 +4,10 @@ class MissingUsersWorker
 
   recurrence {hourly}
 
-  def perform
-    missing_users.find_each do |user|
-      NotifyContactWorker.perform_async(user.identity, user.contact_phone_number)
+  def perform(notifier = NotifyContactWorker)
+    missing_users.each do |user|
+      next if user.contact_notified?
+      notifier.perform_async(user.identity, user.contact_phone_number)
     end
   end
 
