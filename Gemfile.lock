@@ -69,6 +69,11 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
+    factory_girl (4.4.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.4.0)
+      factory_girl (~> 4.4.0)
+      railties (>= 3.0.0)
     faker (1.2.0)
       i18n (~> 0.5)
     ffi (1.9.3)
@@ -217,7 +222,6 @@ GEM
     slop (3.4.7)
     spoon (0.0.4)
       ffi
-    spring (1.1.1)
     sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -265,6 +269,7 @@ DEPENDENCIES
   activerecord-jdbcpostgresql-adapter
   awesome_print
   devise
+  factory_girl_rails
   faker
   foundation-rails
   guard
@@ -284,7 +289,6 @@ DEPENDENCIES
   sdoc
   sidekiq
   sidetiq
-  spring
   stripe
   therubyracer
   therubyrhino

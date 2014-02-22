@@ -17,5 +17,5 @@ USERS_TO_CREATE.times do |i|
   user.create_contact phone_number: Faker::Number.number(10),
                       name: Faker::Name.name
 
-  rand(100).times { user.inbound_messages.create from: user.phone_number, to: '+17039442823', text: Faker::Lorem.characters(rand 160)}
+  rand(200).times { user.inbound_messages.create from: user.phone_number, to: '+17039442823', text: Faker::Lorem.characters(rand 160)}
 end
