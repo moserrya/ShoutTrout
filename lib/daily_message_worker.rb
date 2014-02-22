@@ -6,14 +6,14 @@ class DailyMessageWorker
   recurrence {hourly}
 
   def perform
-    send_daily_messages
+    send_messages(hourly_users.pluck(:phone_number), message_body)
+    hourly_users.update_all(last_outbound_message_at: Time.now)
   end
 
   private
-  def send_daily_messages
-    hourly_users = User.active.where(hour_to_send_message: Time.now.hour)
-    send_messages(hourly_users.pluck(:phone_number), message_body)
-    hourly_users.update_all(last_outbound_message_at: Time.now)
+
+  def hourly_users
+    @hourly_users ||= User.active.where(hour_to_send_message: Time.now.hour)
   end
 
   def message_body
