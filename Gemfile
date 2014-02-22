@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.9'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0.beta1'
+gem 'rails', '4.1.0.rc1'
 
 platform :ruby do
   gem 'pg'
@@ -31,7 +31,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-# gem 'turbolinks'
+gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -45,7 +45,7 @@ gem 'spring',        group: :development
 gem 'guard',         group: :development
 gem 'guard-haml',    group: :development
 
-gem 'rspec-rails',   group: [:development, :test]
+gem 'rspec-rails', '~> 3.0.0.beta2', group: [:development, :test]
 
 gem 'devise'
 
