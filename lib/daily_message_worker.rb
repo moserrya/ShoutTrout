@@ -1,19 +1,19 @@
 class DailyMessageWorker
   include Sidekiq::Worker
   include Sidetiq::Schedulable
-  include PlivoClient
 
   recurrence {hourly}
 
+  # Plivo also has a User class; mixing it in here causes a namespace collision
   def perform
-    send_messages(hourly_users.pluck(:phone_number), message_body)
+    PlivoClient.send_messages(hourly_users.pluck(:phone_number), message_body)
     hourly_users.update_all(last_outbound_message_at: Time.now)
   end
 
   private
 
   def hourly_users
-    @hourly_users ||= ActiveRecord::Base::User.active.where(hour_to_send_message: Time.now.hour)
+    @hourly_users ||= User.active.where(hour_to_send_message: Time.now.hour)
   end
 
   def message_body

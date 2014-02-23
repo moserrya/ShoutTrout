@@ -1,10 +1,9 @@
 class NotifyContactWorker
   include Sidekiq::Worker
-  include PlivoClient
 
   def perform(user_identity, contact_phone_number)
     message_body = build_message_body(user_identity)
-    send_message(contact_phone_number, message_body)
+    PlivoClient.send_message(contact_phone_number, message_body)
   end
 
   private
