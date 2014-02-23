@@ -13,7 +13,7 @@ class DailyMessageWorker
   private
 
   def hourly_users
-    @hourly_users ||= User.active.where(hour_to_send_message: Time.now.hour)
+    @hourly_users ||= ActiveRecord::Base::User.active.where(hour_to_send_message: Time.now.hour)
   end
 
   def message_body

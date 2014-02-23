@@ -6,6 +6,9 @@ FactoryGirl.define do
     text { Faker::Lorem.words(10 - Kernel.rand(10)).join(' ') }
   end
 
+  factory :subscription do
+  end
+
   factory :user do
     name { Faker::Name.name }
     phone_number { Faker::Number.number(10) }
@@ -19,6 +22,12 @@ FactoryGirl.define do
 
       after(:create) do |user, evaluator|
         create_list(:inbound_message, evaluator.messages_count, user: user, from: user.phone_number)
+      end
+    end
+
+    factory :user_with_subscription do
+      after(:create) do |user, evaluator|
+        create(:subscription, user: user)
       end
     end
   end

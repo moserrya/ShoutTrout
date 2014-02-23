@@ -1,4 +1,5 @@
 module PlivoClient
+  extend self
   include Plivo
 
   def send_message(dst, body)
