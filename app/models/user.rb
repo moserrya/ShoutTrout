@@ -6,8 +6,6 @@ class User < ActiveRecord::Base
   has_one :subscription, dependent: :nullify
   has_many :inbound_messages
 
-  has_one :last_inbound_message, -> {order('id desc')}, class_name: 'InboundMessage'
-
   before_validation NormalizePhoneNumber.new :phone_number
   validates :phone_number, length: {is: 12, message: "does not appear to be valid"}
 

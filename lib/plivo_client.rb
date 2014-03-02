@@ -7,6 +7,7 @@ module PlivoClient
   end
 
   def send_messages(dsts, body)
+    return true unless dsts.present?
     dst_list = dsts.join('<')
     status_code, body = plivo.send_message message_params(dst_list, body)
     raise PlivoClientError.new body.to_s, body.response unless status_code.to_s =~ /2\d\d/
